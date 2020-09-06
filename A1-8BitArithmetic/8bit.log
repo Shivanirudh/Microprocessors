@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.2.8)  30 AUG 2020 15:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.2.8)  6 SEP 2020 21:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -434,18 +434,18 @@ Package graphics Info: Driver file: pdftex.def on input line 99.
 (./8bit.aux)
 \openout1 = `8bit.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
 \c@lstlisting=\count97
  (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -517,67 +517,71 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <10.95> on input line 47.
+(Font)              <14.4> on input line 40.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 47.
+(Font)              <7> on input line 40.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 47.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 58.
+(Font)              <12> on input line 43.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 43.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 43.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 62.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 58.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 62.
  [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <14.4> on input line 90.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 90.
-<Addition.png, id=13, 1371.1225pt x 770.88pt>
+(Font)              <10.95> on input line 129.
+ [2]
+<Addition.png, id=14, 1371.1225pt x 770.88pt>
 File: Addition.png Graphic file (type png)
 <use Addition.png>
-Package pdftex.def Info: Addition.png  used on input line 153.
-(pdftex.def)             Requested size: 390.0pt x 181.14282pt.
- [3] [4 <./Addition.png>]
-<Subtraction.png, id=25, 1371.1225pt x 770.88pt>
+Package pdftex.def Info: Addition.png  used on input line 136.
+(pdftex.def)             Requested size: 390.0pt x 167.30809pt.
+ [3 <./Addition.png>]
+<Subtraction.png, id=23, 1371.1225pt x 770.88pt>
 File: Subtraction.png Graphic file (type png)
 <use Subtraction.png>
-Package pdftex.def Info: Subtraction.png  used on input line 221.
-(pdftex.def)             Requested size: 390.0pt x 181.14282pt.
- [5] [6 <./Subtraction.png>]
-<Multiplication.png, id=35, 1371.1225pt x 770.88pt>
+Package pdftex.def Info: Subtraction.png  used on input line 198.
+(pdftex.def)             Requested size: 390.0pt x 167.30809pt.
+ [4] [5 <./Subtraction.png>] [6]
+<Multiplication.png, id=37, 1371.1225pt x 770.88pt>
 File: Multiplication.png Graphic file (type png)
 <use Multiplication.png>
-Package pdftex.def Info: Multiplication.png  used on input line 283.
-(pdftex.def)             Requested size: 390.0pt x 181.14282pt.
- [7] [8 <./Multiplication.png>]
-<Division.png, id=46, 1371.1225pt x 770.88pt>
+Package pdftex.def Info: Multiplication.png  used on input line 254.
+(pdftex.def)             Requested size: 390.0pt x 167.30809pt.
+ [7 <./Multiplication.png>] [8]
+<Division.png, id=48, 1371.1225pt x 770.88pt>
 File: Division.png Graphic file (type png)
 <use Division.png>
-Package pdftex.def Info: Division.png  used on input line 345.
-(pdftex.def)             Requested size: 390.0pt x 181.14282pt.
- [9] [10 <./Division.png>] (./8bit.aux) ) 
+Package pdftex.def Info: Division.png  used on input line 311.
+(pdftex.def)             Requested size: 390.0pt x 167.30809pt.
+ [9 <./Division.png>] (./8bit.aux) ) 
 Here is how much of TeX's memory you used:
- 4107 strings out of 494923
- 54895 string characters out of 6180743
- 128510 words of memory out of 5000000
- 7374 multiletter control sequences out of 15000+600000
- 9375 words of font info for 33 fonts, out of 8000000 for 9000
+ 4111 strings out of 494923
+ 54946 string characters out of 6180743
+ 127526 words of memory out of 5000000
+ 7377 multiletter control sequences out of 15000+600000
+ 10080 words of font info for 35 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 41i,9n,35p,271b,335s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-sy10.pfb>
-Output written on 8bit.pdf (10 pages, 519030 bytes).
+ 41i,9n,35p,271b,336s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on 8bit.pdf (9 pages, 538072 bytes).
 PDF statistics:
- 74 PDF objects out of 1000 (max. 8388607)
- 44 compressed objects within 1 object stream
+ 79 PDF objects out of 1000 (max. 8388607)
+ 48 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  45 words of extra memory for PDF output out of 10000 (max. 10000000)
 

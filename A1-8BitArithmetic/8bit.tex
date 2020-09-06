@@ -33,21 +33,25 @@
 }
 \lstset{style=mystyle}
 
+\title{\bf 8 Bit Arithmetic Operations}
+\author{\vspace{-10ex}}
+\date{\vspace{-10ex}}
 \begin{document}
-\section*{\centering{\textbf{8 bit Arithmetic Operations}}}
+\maketitle
 
-\begin{table}[h]
-\resizebox{\textwidth}{!}{
-    \small{
-    \begin{tabular}{l r}
-        Exp. No.: 1  & Name: Shivanirudh S G\\
-        Date: 30 August 2020 & Reg. No.: 185001146\\
-    \end{tabular}
-    }
-}
-\end{table}
-
-\bigskip
+\begin{minipage}{0.45\textwidth}
+        \begin{tabular}{l l}
+            \textbf{Expt No:}&1\\
+            \textbf{Date :}&21/08/2020
+        \end{tabular}
+\end{minipage}%
+\begin{minipage}{0.45\textwidth}
+        \begin{tabular}{l l}
+             \textbf{Name:}& Shivanirudh S G  \\
+             \textbf{Reg No:} & 185001146 
+        \end{tabular}
+\end{minipage}
+\vspace{1cm}
 \hrule
 \begin{flushleft}
 \subsection*{\textbf{Aim:}} 
@@ -69,25 +73,24 @@ To perform arithmetic operations on two 8 bit numbers.
         \item The command \textbf{``q"} exits from the debug session.
     \end{itemize}
 \end{itemize}
-\subsection*{\textbf{Algorithm:}}
-\begin{enumerate}
-    \item Begin.
-    \item Declare data and code segments.
-    \item Declare variables for operands, and results in the data segment.
-    \item Start code segment.
-    \item Set an offset if preferred.
-    \item Load contents of the data segment into the DS register through the AX register.
-    \item Load contents of the operand(s) on to AL and/or BL register(s).
-    \item Perform required operation, add, sub, mul or div, on the operands.
-    \item If a carry/overflow occurs, store it.
-    \item Store results in respective registers.
-    \item Request Interrupt to terminate.
-    \item End code segment.
-    \item End. 
-\end{enumerate}
+
+\noindent\rule{\textwidth}{1.5pt}
 \hrule
 \newpage
 \subsection*{\textbf{\underline{8 Bit Addition}}}
+
+\subsubsection*{\textbf{Algorithm:}}
+\begin{itemize}
+    \item Move the data segment to the AX register and then move it to the DS register.
+    \item Move the first operand to AH register. 
+    \item Move the second operand to the BH register. 
+    \item Initially set the CH register to 00h. 
+    \item Then add using ADD AH,BH.
+    \item Using JNC instruction check for carry and if there is no carry, no need to increment CH.
+    \item Else, increment CH by 1. 
+    \item The result and carry stored in AH and CH should be moved to RESULT
+and CARRY respectively.
+\end{itemize}
 
 \subsubsection*{\textbf{Program:}}
 
@@ -97,24 +100,6 @@ To perform arithmetic operations on two 8 bit numbers.
 \begin{tabular}{|l|l|} 
 \hline
 \textbf{Program}                                                 & \textbf{Comments}                             \\ 
-\hline
-assume cs:code,ds:data                                           & Declare code and data segments                \\ 
-\hline
-data segment                                                     & Declare operands in data segment              \\ 
-\hline
-opr1 db 11h                                                      & Set opr1 to hex value 11                      \\ 
-\hline
-opr2 db 99h                                                      & Set opr2 to hex value 99                      \\ 
-\hline
-result db 00H                                                    & Set result to hex value 00                    \\ 
-\hline
-carry db 00H                                                     & Set carry to hex value 00                     \\ 
-\hline
-data ends                                                        & End of data segment                           \\ 
-\hline
-code segment                                                     &                                               \\ 
-\hline
-org 0100h                                                        &                                               \\ 
 \hline
 start:~ mov ax,data                                              & Move data segment contents to AX register     \\ 
 \hline
@@ -136,11 +121,7 @@ here:~ mov result,ah                                             & Move contents
 \hline
 mov carry,ch                                                     & Move contents of CH register to carry         \\ 
 \hline
-mov ah,4ch                                                       &                                               \\ 
-\hline
 int 21h                                                          & Request interrupt routine                     \\ 
-\hline
-code ends                                                        &                                               \\ 
 \hline
 end start                                                        &                                               \\
 \hline
@@ -148,13 +129,29 @@ end start                                                        &              
 }
 \end{table}
 
-%\newpage
+\newpage
 \subsubsection*{\textbf{Input and Output:}}
-\includegraphics[trim = 100mm 60mm 100mm 80mm, clip, width = \textwidth]{Addition.png}
-
+\begin{figure}[h]
+    \centering
+    \includegraphics[trim = 100mm 70mm 100mm 80mm, clip, width = \textwidth]{Addition.png}
+    \caption{ \textbf{Input:} \emph{opr1:} BCh, \emph{opr2:} 99h; 
+              \textbf{Output:} \emph{Result:} 55h, \emph{Carry:} 01h}
+\end{figure}
 %----------------------------------------------------------------------------------------------------------------------------------------
 \newpage
 \subsection*{\textbf{\underline{8 Bit Subtraction}}}
+
+\subsubsection*{\textbf{Algorithm:}}
+\begin{itemize}
+    \item Move the data segment to the AX register and then move it to the DS register.
+    \item Move the first operand to AH register.
+    \item Move the second operand to the BH register.
+    \item Initially set the CH register to 00h.
+\item Then subtract using SUB AH,BH.
+\item Check for carry using JNC instruction. If no carry then it means AH $>$ BH and hence no need to increment CH and no need to complement AH.
+\item Else, AH$<$BH. Hence we have to take 2’s complement of AH using NEG AH and also increment CH by 1 using INC CH.
+\item The result and carry stored in AH and CH should be moved to RESULT and CARRY respectively.
+\end{itemize}
 
 \subsubsection*{\textbf{Program:}}
 \begin{table}[htb]
@@ -163,24 +160,6 @@ end start                                                        &              
 \begin{tabular}{|l|l|} 
 \hline
 \textbf{Program}                                                 & \textbf{Comments}                             \\ 
-\hline
-assume cs:code,ds:data                                           & Declare code and data segments                \\ 
-\hline
-data segment                                                     & Declare operands in data segment              \\ 
-\hline
-opr1 db 11h                                                      & Set opr1 to hex value 11                      \\ 
-\hline
-opr2 db 99h                                                      & Set opr2 to hex value 99                      \\ 
-\hline
-result db 00H                                                    & Set result to hex value 00                    \\ 
-\hline
-carry db 00H                                                     & Set carry to hex value 00                     \\ 
-\hline
-data ends                                                        & End of data segment                           \\ 
-\hline
-code segment                                                     &                                               \\ 
-\hline
-org 0100h                                                        &                                               \\ 
 \hline
 start:~ mov ax,data                                              & Move data segment contents to AX register     \\ 
 \hline
@@ -204,11 +183,7 @@ here:~ mov result,ah                                             & Move contents
 \hline
 mov carry,ch                                                     & Move contents of CH register to carry         \\ 
 \hline
-mov ah,4ch                                                       &                                               \\ 
-\hline
 int 21h                                                          & Request interrupt routine                     \\ 
-\hline
-code ends                                                        &                                               \\ 
 \hline
 end start                                                        &                                               \\
 \hline
@@ -218,11 +193,27 @@ end start                                                        &              
 
 %\newpage
 \subsubsection*{\textbf{Input and Output:}}
-\includegraphics[trim = 100mm 60mm 100mm 80mm, clip, width = \textwidth]{Subtraction.png}
+\begin{figure}[h]
+    \centering
+    \includegraphics[trim = 100mm 70mm 100mm 80mm, clip, width = \textwidth]{Subtraction.png}
+    \caption{ \textbf{Input:} \emph{opr1:} 11h, \emph{opr2:} 99h; 
+              \textbf{Output:} \emph{Result:} 88h, \emph{Sign:} 01h}
+\end{figure}
+
 
 %----------------------------------------------------------------------------------------------------------------------------------------
 \newpage
 \subsection*{\textbf{\underline{8 Bit Multiplication}}}
+
+\subsubsection*{\textbf{Algorithm:}}
+\begin{itemize}
+    \item Move the data segment to the AX register and then move it to the DS register.
+    \item Move the first operand to AL register.
+\item  Move the second operand to the BL register.
+\item  Then multiply using MUL BL.(Since AL is default operand register for MUL instruction we only need to specify the other operand register.)
+\item  The result stored in AX register(16 bit- because multiplication of two 8 bit numbers yields a 16 bit number) should now be moved to
+RESULT.
+\end{itemize}
 
 \subsubsection*{\textbf{Program:}}
 \begin{table}[htb]
@@ -231,24 +222,6 @@ end start                                                        &              
 \begin{tabular}{|l|l|} 
 \hline
 \textbf{Program}                                                 & \textbf{Comments}                             \\ 
-\hline
-assume cs:code,ds:data                                           & Declare code and data segments                \\ 
-\hline
-data segment                                                     & Declare operands in data segment              \\ 
-\hline
-opr1 db 11h                                                      & Set opr1 to hex value 11                      \\ 
-\hline
-opr2 db 99h                                                      & Set opr2 to hex value 99                      \\ 
-\hline
-resulth db 00H                                                   & Set resulth to hex value 00                   \\ 
-\hline
-resultl db 00H                                                   & Set resultl to hex value 00                   \\ 
-\hline
-data ends                                                        & End of data segment                           \\ 
-\hline
-code segment                                                     &                                               \\ 
-\hline
-org 0100h                                                        &                                               \\ 
 \hline
 start:~ mov ax,data                                              & Move data segment contents to AX register     \\ 
 \hline
@@ -266,11 +239,7 @@ here:~ mov resulth,ah                                            & Move contents
 \hline
 mov resultl,al                                                   & Move contents of AL register to resultl       \\ 
 \hline
-mov ah,4ch                                                       &                                               \\ 
-\hline
 int 21h                                                          & Request interrupt routine                     \\ 
-\hline
-code ends                                                        &                                               \\ 
 \hline
 end start                                                        &                                               \\
 \hline
@@ -278,13 +247,30 @@ end start                                                        &              
 }
 \end{table}
 
-%\newpage
+\newpage
 \subsubsection*{\textbf{Input and Output:}}
-\includegraphics[trim = 100mm 60mm 100mm 80mm, clip, width = \textwidth]{Multiplication.png}
+\begin{figure}[h]
+    \centering
+    \includegraphics[trim = 100mm 70mm 100mm 80mm, clip, width = \textwidth]{Multiplication.png}
+    \caption{ \textbf{Input:} \emph{opr1:} 23h, \emph{opr2:} 99h; 
+              \textbf{Output:} \emph{Result:} EF 14h}
+\end{figure}
+
 
 %----------------------------------------------------------------------------------------------------------------------------------------
 \newpage
 \subsection*{\textbf{\underline{8 Bit Division}}}
+
+\subsubsection*{\textbf{Algorithm:}}
+\begin{itemize}
+    \item Move the data segment to the AX register and then move it to the DS register.
+\item  Now, set AH register to 00h and move first operand to AL register. (Since we can’t directly divide a 8 bit number by 8 bit number in
+8086, we now make our dividend 16 bit by storing 00h in AH register and the 8-bit operand 1 in AL register).
+\item  Move the second operand to the BL register.
+\item  Now divide using DIV BL.( It will perform AX / BL. Because AH is 00h, what actually happens is the division of a 16 bit number by a
+8 bit number).
+\item  The quotient and remainder stored in AL and AH should be moved to QUOTIENT and REMAINDER respectively
+\end{itemize}
 
 \subsubsection*{\textbf{Program:}}
 \begin{table}[h]
@@ -293,24 +279,6 @@ end start                                                        &              
 \begin{tabular}{|l|l|} 
 \hline
 \textbf{Program}                                                 & \textbf{Comments}                             \\ 
-\hline
-assume cs:code,ds:data                                           & Declare code and data segments                \\ 
-\hline
-data segment                                                     & Declare operands in data segment              \\ 
-\hline
-opr1 db 11h                                                      & Set opr1 to hex value 11                      \\ 
-\hline
-opr2 db 99h                                                      & Set opr2 to hex value 99                      \\ 
-\hline
-resultq db 00H                                                   & Set resultq to hex value 00                   \\ 
-\hline
-resultr db 00H                                                   & Set resultr to hex value 00                   \\ 
-\hline
-data ends                                                        & End of data segment                           \\ 
-\hline
-code segment                                                     &                                               \\ 
-\hline
-org 0100h                                                        &                                               \\ 
 \hline
 start:~ mov ax,data                                              & Move data segment contents to AX register     \\ 
 \hline
@@ -328,11 +296,7 @@ here:~ mov resultq,ah                                            & Move contents
 \hline
 mov resultr,al                                                   & Move contents of AL register to resultl       \\ 
 \hline
-mov ah,4ch                                                       &                                               \\ 
-\hline
 int 21h                                                          & Request interrupt routine                     \\ 
-\hline
-code ends                                                        &                                               \\ 
 \hline
 end start                                                        &                                               \\
 \hline
@@ -340,9 +304,14 @@ end start                                                        &              
 }
 \end{table}
 
-%\newpage
+\newpage
 \subsubsection*{\textbf{Input and Output:}}
-\includegraphics[trim = 100mm 60mm 100mm 80mm, clip, width = \textwidth]{Division.png}
+\begin{figure}[h]
+    \centering
+    \includegraphics[trim = 100mm 70mm 100mm 80mm, clip, width = \textwidth]{Division.png}
+    \caption{ \textbf{Input:} \emph{opr1:} 11h, \emph{opr2:} 10h; 
+              \textbf{Output:} \emph{Quotient:} 01h, \emph{Remainder:} 11h}
+\end{figure}
 
 \hrule
 \subsection*{\textbf{Result:}}
