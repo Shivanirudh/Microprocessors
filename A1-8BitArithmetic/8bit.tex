@@ -5,33 +5,15 @@
 \usepackage{listings}
 \usepackage{xcolor}
 \usepackage{graphicx}
-
-%For syntax highlighting
-\definecolor{codegreen}{rgb}{0,0.6,0}
-\definecolor{codegray}{rgb}{0.5,0.5,0.5}
-\definecolor{codepurple}{rgb}{0.58,0,0.82}
-\definecolor{backcolour}{rgb}{1,1,1}
-
-%%Sets different parameters
-\lstdefinestyle{mystyle}{
-	backgroundcolor=\color{backcolour},   
-    commentstyle=\color{codegreen},
-    keywordstyle=\color{magenta},
-    numberstyle=\tiny\color{codegray},
-    stringstyle=\color{codepurple},
-    basicstyle=\ttfamily\footnotesize,
-    breakatwhitespace=false,         
-    breaklines=true,                 
-    captionpos=b,                    
-    keepspaces=true,                 
-    numbers=left,                    
-    numbersep=5pt,                  
-    showspaces=false,                
-    showstringspaces=false,
-    showtabs=false,                  
-    tabsize=4
-}
-\lstset{style=mystyle}
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=25mm,
+ top=20mm,
+ right=25mm,
+ bottom=20mm
+ }
 
 \title{\bf 8 Bit Arithmetic Operations}
 \author{\vspace{-10ex}}
@@ -92,14 +74,34 @@ To perform arithmetic operations on two 8 bit numbers.
 and CARRY respectively.
 \end{itemize}
 
+\newpage
 \subsubsection*{\textbf{Program:}}
 
 \begin{table}[htb]
-\centering\small
+\centering
 \resizebox{\columnwidth}{!}{
 \begin{tabular}{|l|l|} 
 \hline
 \textbf{Program}                                                 & \textbf{Comments}                             \\ 
+\hline
+\hline
+assume cs:code,ds:data                                           & Declare code and data segments                \\
+\hline
+data segment                                                     & Start of data segment                         \\
+\hline 
+opr1 db 11h                                                      & Define byte opr1 with hex value 11            \\
+\hline
+opr2 db 99h                                                      & Define byte opr2 with hex value 99            \\
+\hline
+result db 00H                                                    & Define byte result with hex value 00          \\
+\hline
+carry db 00H                                                     & Define byte carry with hex value 00           \\
+\hline      
+data ends                                                        & End of data segment                           \\
+\hline
+code segment                                                     & Start of code segment                         \\
+\hline
+org 0100h                                                        & Set preferred offset                          \\
 \hline
 start:~ mov ax,data                                              & Move data segment contents to AX register     \\ 
 \hline
@@ -122,6 +124,8 @@ here:~ mov result,ah                                             & Move contents
 mov carry,ch                                                     & Move contents of CH register to carry         \\ 
 \hline
 int 21h                                                          & Request interrupt routine                     \\ 
+\hline
+code ends                                                        & End of code segment                           \\
 \hline
 end start                                                        &                                               \\
 \hline
@@ -153,6 +157,7 @@ end start                                                        &              
 \item The result and carry stored in AH and CH should be moved to RESULT and CARRY respectively.
 \end{itemize}
 
+\newpage
 \subsubsection*{\textbf{Program:}}
 \begin{table}[htb]
 \centering\small
@@ -160,6 +165,25 @@ end start                                                        &              
 \begin{tabular}{|l|l|} 
 \hline
 \textbf{Program}                                                 & \textbf{Comments}                             \\ 
+\hline
+\hline
+assume cs:code,ds:data                                           & Declare code and data segments                \\
+\hline
+data segment                                                     & Start of data segment                         \\
+\hline 
+opr1 db 11h                                                      & Define byte opr1 with hex value 11            \\
+\hline
+opr2 db 99h                                                      & Define byte opr2 with hex value 99            \\
+\hline
+result db 00H                                                    & Define byte result with hex value 00          \\
+\hline
+carry db 00H                                                     & Define byte carry with hex value 00           \\
+\hline      
+data ends                                                        & End of data segment                           \\
+\hline
+code segment                                                     & Start of code segment                         \\
+\hline
+org 0100h                                                        & Set preferred offset                          \\
 \hline
 start:~ mov ax,data                                              & Move data segment contents to AX register     \\ 
 \hline
@@ -185,13 +209,15 @@ mov carry,ch                                                     & Move contents
 \hline
 int 21h                                                          & Request interrupt routine                     \\ 
 \hline
+code ends                                                        & End of code segment                           \\
+\hline
 end start                                                        &                                               \\
 \hline
 \end{tabular}
 }
 \end{table}
 
-%\newpage
+\newpage
 \subsubsection*{\textbf{Input and Output:}}
 \begin{figure}[h]
     \centering
@@ -223,6 +249,25 @@ RESULT.
 \hline
 \textbf{Program}                                                 & \textbf{Comments}                             \\ 
 \hline
+\hline
+assume cs:code,ds:data                                           & Declare code and data segments                \\
+\hline
+data segment                                                     & Start of data segment                         \\
+\hline 
+opr1 db 11h                                                      & Define byte opr1 with hex value 11            \\
+\hline
+opr2 db 99h                                                      & Define byte opr2 with hex value 99            \\
+\hline
+resulth db 00H                                                   & Define byte resulth with hex value 00         \\
+\hline
+resultl db 00H                                                   & Define byte resultl with hex value 00         \\
+\hline      
+data ends                                                        & End of data segment                           \\
+\hline
+code segment                                                     & Start of code segment                         \\
+\hline
+org 0100h                                                        & Set preferred offset                          \\
+\hline
 start:~ mov ax,data                                              & Move data segment contents to AX register     \\ 
 \hline
 mov ds,ax                                                        & Move data in AX register to DS register       \\ 
@@ -240,6 +285,8 @@ here:~ mov resulth,ah                                            & Move contents
 mov resultl,al                                                   & Move contents of AL register to resultl       \\ 
 \hline
 int 21h                                                          & Request interrupt routine                     \\ 
+\hline
+code ends                                                        & End of code segment                           \\
 \hline
 end start                                                        &                                               \\
 \hline
@@ -280,6 +327,25 @@ end start                                                        &              
 \hline
 \textbf{Program}                                                 & \textbf{Comments}                             \\ 
 \hline
+\hline
+assume cs:code,ds:data                                           & Declare code and data segments                \\
+\hline
+data segment                                                     & Start of data segment                         \\
+\hline 
+opr1 db 11h                                                      & Define byte opr1 with hex value 11            \\
+\hline
+opr2 db 10h                                                      & Define byte opr2 with hex value 99            \\
+\hline
+resultq db 00H                                                   & Define byte resultq with hex value 00         \\
+\hline
+resultr db 00H                                                   & Define byte resultr with hex value 00         \\
+\hline      
+data ends                                                        & End of data segment                           \\
+\hline
+code segment                                                     & Start of code segment                         \\
+\hline
+org 0100h                                                        & Set preferred offset                          \\
+\hline
 start:~ mov ax,data                                              & Move data segment contents to AX register     \\ 
 \hline
 mov ds,ax                                                        & Move data in AX register to DS register       \\ 
@@ -292,11 +358,13 @@ mov bh,opr2                                                      & Move contents
 \hline
 div bh                                                           & AX = AL / BH                                  \\ 
 \hline
-here:~ mov resultq,ah                                            & Move contents of AH register to resulth       \\ 
+here:~ mov resultq,ah                                            & Move contents of AH register to resultq       \\ 
 \hline
-mov resultr,al                                                   & Move contents of AL register to resultl       \\ 
+mov resultr,al                                                   & Move contents of AL register to resultr       \\ 
 \hline
 int 21h                                                          & Request interrupt routine                     \\ 
+\hline
+code ends                                                        & End of code segment                           \\
 \hline
 end start                                                        &                                               \\
 \hline

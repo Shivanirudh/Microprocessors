@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.2.8)  7 SEP 2020 15:14
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.2.8)  7 SEP 2020 16:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**8bit.tex
-(./8bit.tex
+**16bit.tex
+(./16bit.tex
 LaTeX2e <2017-04-15>
 Babel <3.18> and hyphenation patterns for 3 language(s) loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
@@ -431,69 +431,36 @@ Package graphics Info: Driver file: pdftex.def on input line 99.
 \Gin@req@height=\dimen108
 \Gin@req@width=\dimen109
 )
-(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
-Package: geometry 2010/09/12 v5.6 Page Geometry
+(./16bit.aux)
+\openout1 = `16bit.aux'.
 
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty
-Package: ifpdf 2017/03/15 v3.2 Provides the ifpdf switch
-)
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifvtex.sty
-Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
-Package ifvtex Info: VTeX not detected.
-)
-(/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty
-Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
-)
-\Gm@cnth=\count97
-\Gm@cntv=\count98
-\c@Gm@tempcnt=\count99
-\Gm@bindingoffset=\dimen110
-\Gm@wd@mp=\dimen111
-\Gm@odd@mp=\dimen112
-\Gm@even@mp=\dimen113
-\Gm@layoutwidth=\dimen114
-\Gm@layoutheight=\dimen115
-\Gm@layouthoffset=\dimen116
-\Gm@layoutvoffset=\dimen117
-\Gm@dimlist=\toks18
-)
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+\c@lstlisting=\count97
 
-Package geometry Warning: Over-specification in `h'-direction.
-    `width' (483.69684pt) is ignored.
-
-
-Package geometry Warning: Over-specification in `v'-direction.
-    `height' (731.23582pt) is ignored.
-
-(./8bit.aux)
-\openout1 = `8bit.aux'.
-
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-\c@lstlisting=\count100
- (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count101
-\scratchdimen=\dimen118
+\scratchcounter=\count98
+\scratchdimen=\dimen110
 \scratchbox=\box28
-\nofMPsegments=\count102
-\nofMParguments=\count103
-\everyMPshowfont=\toks19
-\MPscratchCnt=\count104
-\MPscratchDim=\dimen119
-\MPnumerator=\count105
-\makeMPintoPDFobject=\count106
-\everyMPtoPDFconversion=\toks20
+\nofMPsegments=\count99
+\nofMParguments=\count100
+\everyMPshowfont=\toks18
+\MPscratchCnt=\count101
+\MPscratchDim=\dimen111
+\MPnumerator=\count102
+\makeMPintoPDFobject=\count103
+\everyMPtoPDFconversion=\toks19
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -530,6 +497,10 @@ Package etexcmds Info: Could not find \expanded.
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2018/01/21 v0.26 Utility functions of pdfTeX for LuaTeX (HO
 )
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2017/03/15 v3.2 Provides the ifpdf switch
+)
 Package pdftexcmds Info: LuaTeX not detected.
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
@@ -546,106 +517,94 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-*geometry* driver: auto-detecting
-*geometry* detected driver: pdftex
-*geometry* verbose mode - [ preamble ] result:
-* driver: pdftex
-* paper: a4paper
-* layout: <same size as paper>
-* layoutoffset:(h,v)=(0.0pt,0.0pt)
-* modes: 
-* h-part:(L,W,R)=(71.13188pt, 455.24411pt, 71.13188pt)
-* v-part:(T,H,B)=(56.9055pt, 731.23584pt, 56.9055pt)
-* \paperwidth=597.50787pt
-* \paperheight=845.04684pt
-* \textwidth=455.24411pt
-* \textheight=731.23584pt
-* \oddsidemargin=-1.1381pt
-* \evensidemargin=-1.1381pt
-* \topmargin=-52.36449pt
-* \headheight=12.0pt
-* \headsep=25.0pt
-* \topskip=12.0pt
-* \footskip=30.0pt
-* \marginparwidth=35.0pt
-* \marginparsep=10.0pt
-* \columnsep=10.0pt
-* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
-* \hoffset=0.0pt
-* \voffset=0.0pt
-* \mag=1000
-* \@twocolumnfalse
-* \@twosidefalse
-* \@mparswitchfalse
-* \@reversemarginfalse
-* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <14.4> on input line 40.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 40.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 43.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 43.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 43.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 67.
 
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <14.4> on input line 22.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 22.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 25.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 25.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 25.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 44.
 (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 44.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 67.
  [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
-<Addition.png, id=15, 1371.1225pt x 770.88pt>
-File: Addition.png Graphic file (type png)
-<use Addition.png>
-Package pdftex.def Info: Addition.png  used on input line 140.
-(pdftex.def)             Requested size: 455.24411pt x 195.29779pt.
- [4 <./Addition.png>] [5]
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
+<AdditionUS.png, id=12, 1371.1225pt x 770.88pt>
+File: AdditionUS.png Graphic file (type png)
+<use AdditionUS.png>
+Package pdftex.def Info: AdditionUS.png  used on input line 141.
+(pdftex.def)             Requested size: 390.0pt x 141.1611pt.
+<AdditionIO.png, id=15, 1371.1225pt x 770.88pt>
+File: AdditionIO.png Graphic file (type png)
+<use AdditionIO.png>
+Package pdftex.def Info: AdditionIO.png  used on input line 146.
+(pdftex.def)             Requested size: 390.0pt x 174.22546pt.
+ [3 <./AdditionUS.png> <./AdditionIO.png>]
+[4] [5]
+<SubtractionUS.png, id=32, 1371.1225pt x 770.88pt>
+File: SubtractionUS.png Graphic file (type png)
+<use SubtractionUS.png>
+Package pdftex.def Info: SubtractionUS.png  used on input line 231.
+(pdftex.def)             Requested size: 390.0pt x 141.1611pt.
+<SubtractionIO.png, id=34, 1371.1225pt x 770.88pt>
+File: SubtractionIO.png Graphic file (type png)
+<use SubtractionIO.png>
+Package pdftex.def Info: SubtractionIO.png  used on input line 236.
+(pdftex.def)             Requested size: 390.0pt x 181.14282pt.
+ [6 <./SubtractionUS.png> <./SubtractionIO.png>] [7]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <10.95> on input line 217.
- [6]
-<Subtraction.png, id=33, 1371.1225pt x 770.88pt>
-File: Subtraction.png Graphic file (type png)
-<use Subtraction.png>
-Package pdftex.def Info: Subtraction.png  used on input line 224.
-(pdftex.def)             Requested size: 455.24411pt x 195.29779pt.
- [7 <./Subtraction.png>] [8]
-<Multiplication.png, id=44, 1371.1225pt x 770.88pt>
-File: Multiplication.png Graphic file (type png)
-<use Multiplication.png>
-Package pdftex.def Info: Multiplication.png  used on input line 301.
-(pdftex.def)             Requested size: 455.24411pt x 195.29779pt.
- [9 <./Multiplication.png>] [10]
-<Division.png, id=54, 1371.1225pt x 770.88pt>
-File: Division.png Graphic file (type png)
-<use Division.png>
-Package pdftex.def Info: Division.png  used on input line 379.
-(pdftex.def)             Requested size: 455.24411pt x 195.29779pt.
- [11 <./Division.png>]
-(./8bit.aux) ) 
+(Font)              <10.95> on input line 305.
+ [8]
+<MultiplicationUS.png, id=52, 1371.1225pt x 770.88pt>
+File: MultiplicationUS.png Graphic file (type png)
+<use MultiplicationUS.png>
+Package pdftex.def Info: MultiplicationUS.png  used on input line 312.
+(pdftex.def)             Requested size: 390.0pt x 141.1611pt.
+<MultiplicationIO.png, id=54, 1371.1225pt x 770.88pt>
+File: MultiplicationIO.png Graphic file (type png)
+<use MultiplicationIO.png>
+Package pdftex.def Info: MultiplicationIO.png  used on input line 317.
+(pdftex.def)             Requested size: 390.0pt x 181.14282pt.
+ [9 <./MultiplicationUS.png> <./MultiplicationIO.png>] [10] [11]
+<DivisionUS.png, id=69, 1371.1225pt x 770.88pt>
+File: DivisionUS.png Graphic file (type png)
+<use DivisionUS.png>
+Package pdftex.def Info: DivisionUS.png  used on input line 393.
+(pdftex.def)             Requested size: 390.0pt x 141.1611pt.
+<DivisionIO.png, id=71, 1371.1225pt x 770.88pt>
+File: DivisionIO.png Graphic file (type png)
+<use DivisionIO.png>
+Package pdftex.def Info: DivisionIO.png  used on input line 398.
+(pdftex.def)             Requested size: 390.0pt x 174.22546pt.
+ [12 <./DivisionUS.png> <./DivisionIO.png>] (./16bit.aux) ) 
 Here is how much of TeX's memory you used:
- 4584 strings out of 494923
- 61883 string characters out of 6180743
- 143381 words of memory out of 5000000
- 7840 multiletter control sequences out of 15000+600000
+ 4131 strings out of 494923
+ 55396 string characters out of 6180743
+ 128527 words of memory out of 5000000
+ 7393 multiletter control sequences out of 15000+600000
  10080 words of font info for 35 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 41i,9n,35p,271b,336s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmb
-x10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pf
-b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share
-/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on 8bit.pdf (11 pages, 542087 bytes).
+ 41i,9n,35p,272b,336s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmti12.pfb>
+Output written on 16bit.pdf (12 pages, 1055788 bytes).
 PDF statistics:
- 85 PDF objects out of 1000 (max. 8388607)
- 52 compressed objects within 1 object stream
+ 104 PDF objects out of 1000 (max. 8388607)
+ 58 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 45 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 89 words of extra memory for PDF output out of 10000 (max. 10000000)
 
