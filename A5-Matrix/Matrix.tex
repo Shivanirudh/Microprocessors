@@ -1,4 +1,4 @@
-\documentclass[12pt,a4paper]{article}
+\documentclass[10pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 %\usepackage{minted}
@@ -153,9 +153,9 @@ inc di                                                           & Increment val
 \hline
 inc bx                                                           & Increment value in BX register                \\         
 \hline
-dec cx                                                           & Decrement value of CX register
+dec cx                                                           & Decrement value of CX register                \\
 \hline
-jnz here                                                         & Jump to here if ZF = 0
+jnz here                                                         & Jump to here if ZF = 0                        \\
 \hline
 exit:~mov ah, 4ch                                                & To request interrupt                          \\
 \hline
@@ -173,33 +173,32 @@ end start                                                        &              
 \subsection*{\textbf{Unassembled code:}}
 \begin{figure}[h]
     \centering
-    \includegraphics[trim = 100mm 60mm 200mm 120mm, clip, width = \textwidth]{Pics/BHUS.png}
+    \includegraphics[trim = 100mm 60mm 200mm 120mm, clip, width = \textwidth]{Pics/MAUS.png}
 \end{figure}
 \subsubsection*{\textbf{Input and Output:}}
 \begin{figure}[h]
     \centering
-    \includegraphics[trim = 100mm 60mm 100mm 80mm, clip, width = \textwidth]{Pics/BHIO.png}
-    \caption{ \textbf{Input:} \emph{BCD:} 34 ; \newline \hspace{1cm}
-              \textbf{Output:} \emph{Hexadecimal:} 22H}
+    \includegraphics[trim = 100mm 60mm 100mm 80mm, clip, width = \textwidth]{Pics/MAIO.png}
+    \caption{ \textbf{Input:} \emph{mat1:} 22H, 33H, 44H, 55H, 66H, 77H; \emph{mat2:} 33H, 44H, 55H, 66H, 77H, 88H ; \newline \hspace{1cm}
+              \textbf{Output:} \emph{mat3:} 55H, 77H, 99H, BBH, DDH, FFH}
 \end{figure}
 %-------------------------------------------------------------------------------------------------------------------------------------------
+\hrule
 \newpage
-\subsection*{\textbf{\underline{Hexadecimal to BCD}}}
+\subsection*{\textbf{\underline{Matrix Subtraction}}}
 
 \subsubsection*{\textbf{Algorithm:}}
 \begin{itemize}
     \item Move the data segment to the AX register and then move it to the DS register.
-    \item Move hexadecimal value 0A to CH register, and 64 to CL register.
-    \item Move HEX value to AL register, 00H to AH register.
-    \item Divide AX by Cl using DIV CL.
-    \item Store quotient from AL in BCDU.
-    \item Move value of AH to AL register, and 00H to AH register. 
-    \item Divide AX by CH using DIV CH.
-    \item Move 04H to the CL register.
-    \item Move value of AH register to CH register.
-    \item Shift AL register 4 bits to left by SHL AL, CL.
-    \item Add CH to AL register using ADD AL, CH.
-    \item Move contents of AL register to BCDL.
+    \item Move offsets of mat1, mat2 and mat3 into SI, DI, BX registers respectively.
+    \item Move value of count to CX register
+    \item Move values of r1, r2, c1, c2 into AL, AH, DL, DH registers respectively. 
+    \item Compare AL, AH by CMP AL, AH and jump to exit if unequal.
+    \item Compare BL, BH by CMP BL, BH and jump to exit if unequal.
+    \item Move value at [DI] to AL register.
+    \item Subtract AL with value at [SI].
+    \item Move value at AL to [BX].
+    \item Increment SI, DI and BX, decrease CX, repeat till CX = 0.
 \end{itemize}
 
 \newpage
@@ -216,12 +215,22 @@ end start                                                        &              
 assume cs:code, ds:data                                          & Declare code and data segments                \\
 \hline
 data segment                                                     & Start of data segment                         \\
+\hline
+r1 db 02H                                                        & Define byte r1 with value 02H                 \\
 \hline 
-bcd_u db 00H                                                     & Define byte bcd_u with value 00               \\
+r2 db 02H                                                        & Define byte r2 with value 02H                 \\
 \hline
-bcd_l db 00H                                                     & Define byte bcd_l with value 00               \\
+c1 db 03H                                                        & Define byte c1 with value 03H                 \\
 \hline
-hex dw 0FDH                                                      & Define byte hex with hex value FD             \\
+c2 db 03H                                                        & Define byte c2 with value 03H                 \\
+\hline
+count dw 0006H                                                   & Define word count with value 0006H            \\
+\hline
+mat1 db 22H, 33H, 44H, 55H, 66H, 77H                             & Define matrix of values mat1                  \\
+\hline
+mat2 db 33H, 44H, 55H, 66H, 77H, 88H                             & Define matrix of values mat2                  \\
+\hline 
+mat3 db ?                                                        & Define result matrix of values mat3           \\
 \hline
 data ends                                                        & End of data segment                           \\
 \hline
@@ -231,33 +240,49 @@ start:~mov ax, data                                              & Move data to 
 \hline
 mov ds, ax                                                       & Move contents of AX register to DS register   \\
 \hline
-mov cl, 64H                                                      & Move hex value 64 to CL register              \\
+mov dl, 0AH                                                      & Move hex value 0A to DL register              \\
 \hline
-mov ch, 0AH                                                      & Move hex value 0A to CH register              \\
+mov si, offset mat1                                              & Move offset of mat1 to SI register            \\
 \hline
-mov al, hex                                                      & Move contents of bcd to AL register           \\
+mov di, offset mat2                                              & Move offset of mat2 to DI register            \\
 \hline
-mov ah, 00H                                                      & Move hex value 00 to AH register              \\
+mov bx, offset mat3                                              & Move offset of mat3 to BX register            \\
 \hline
-div cl                                                           & Perform AL = AX / CL                          \\
-\hline         
-mov bcdu, al                                                     & Move contents of AL register to bcdu          \\
+mov cx, count                                                    & Move value of count to CX register            \\
 \hline
-mov al, ah                                                       & Move contents of AH register to AL            \\
+mov al, r1                                                       & Move value of r1 to AL register               \\
 \hline
-mov ah, 00H                                                      & Move hex value 00 to AH register              \\
+mov ah, r2                                                       & Move value of r2 to AH register               \\
 \hline
-div ch                                                           & Perform AL = AX / CH                          \\
+mov dl, c1                                                       & Move value of c1 to DL register               \\
 \hline
-mov cl, 04H                                                      & Move hex value 04 to CL register              \\
+mov dh, c2                                                       & Move value of c2 to DH register               \\ 
 \hline
-mov ch, ah                                                       & Move contents of AH to CH register            \\
+cmp al, ah                                                       & Compare values of AL and AH registers         \\
 \hline
-shl al, cl                                                       & Shift AL register left by 04 bits             \\
+jne exit                                                         & Jump to exit if ZF = 0                        \\
 \hline
-add al, ch                                                       & Perform AL = AL + CH                          \\
+cmp dl, dh                                                       & Compare values of DL, DH registers            \\
 \hline
-mov bcdl, al                                                     & Move contents of AL to bcdl register          \\
+jne exit                                                         & Jump to exit if ZF = 0                        \\
+\hline
+here:~mov al, [di]                                               & Move contents at DI to AL register            \\
+\hline            
+add al, [si]                                                     & AL = AL - [SI]                                \\
+\hline
+mov [bx], al                                                     & Move contents of AL register to BX register   \\
+\hline
+inc si                                                           & Increment value in SI register                \\
+\hline 
+inc di                                                           & Increment value in DI register                \\
+\hline
+inc bx                                                           & Increment value in BX register                \\         
+\hline
+dec cx                                                           & Decrement value of CX register                \\
+\hline
+jnz here                                                         & Jump to here if ZF = 0                        \\
+\hline
+exit:~mov ah, 4ch                                                & To request interrupt                          \\
 \hline
 int 21h                                                          & Request interrupt routine                     \\ 
 \hline
@@ -273,17 +298,17 @@ end start                                                        &              
 \subsection*{\textbf{Unassembled code:}}
 \begin{figure}[h]
     \centering
-    \includegraphics[trim = 100mm 60mm 200mm 110mm, clip, width = \textwidth]{Pics/HBUS.png}
+    \includegraphics[trim = 100mm 60mm 200mm 120mm, clip, width = \textwidth]{Pics/MSUS.png}
 \end{figure}
 \subsubsection*{\textbf{Input and Output:}}
 \begin{figure}[h]
     \centering
-    \includegraphics[trim = 100mm 60mm 100mm 80mm, clip, width = \textwidth]{Pics/HBIO.png}
-    \caption{ \textbf{Input:} \emph{Hexadecimal:} FDH ; \newline \hspace{1cm}
-              \textbf{Output:} \emph{BCD:} 253}
+    \includegraphics[trim = 100mm 60mm 100mm 80mm, clip, width = \textwidth]{Pics/MSIO.png}
+    \caption{ \textbf{Input:} \emph{mat1:} 22H, 33H, 44H, 55H, 66H, 77H; \emph{mat2:} 33H, 44H, 55H, 66H, 77H, 88H ; \newline \hspace{1cm}
+              \textbf{Output:} \emph{mat3:} 11H, 11H, 11H, 11H, 11H, 11H}
 \end{figure}
 \hrule
 \subsection*{\textbf{Result:}}
-The 8086 programs were written to perform code conversion from BCD to Hexadecimal and vice versa, and the results observed.
+The 8086 programs were written to perform matrix operations, and the results observed.
 \end{flushleft}
 \end{document}
