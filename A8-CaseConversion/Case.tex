@@ -33,7 +33,7 @@
 }
 \lstset{style=mystyle}
 
-\title{\bf Matrix Operations}
+\title{\bf Case Conversion}
 \author{\vspace{-10ex}}
 \date{\vspace{-10ex}}
 \begin{document}
@@ -41,8 +41,8 @@
 
 \begin{minipage}{0.45\textwidth}
         \begin{tabular}{l l}
-            \textbf{Expt No:}&5\\
-            \textbf{Date :}&09/10/2020
+            \textbf{Expt No:}&8\\
+            \textbf{Date :}&16/10/2020
         \end{tabular}
 \end{minipage}%
 \begin{minipage}{0.45\textwidth}
@@ -56,24 +56,26 @@
 
 \begin{flushleft}
 \subsection*{\textbf{Aim:}} 
-To perform matrix operations in 8086.
+To convert case of characters from keyboard on the move in 8086.
 
 \vspace{1cm}
 \hrule
-\subsection*{\textbf{\underline{Matrix Addition}}}
 
 \subsubsection*{\textbf{Algorithm:}}
 \begin{itemize}
     \item Move the data segment to the AX register and then move it to the DS register.
-    \item Move offsets of mat1, mat2 and mat3 into SI, DI, BX registers respectively.
-    \item Move value of count to CX register
-    \item Move values of r1, r2, c1, c2 into AL, AH, DL, DH registers respectively. 
-    \item Compare AL, AH by CMP AL, AH and jump to exit if unequal.
-    \item Compare BL, BH by CMP BL, BH and jump to exit if unequal.
-    \item Move value at [SI] to AL register.
-    \item Add AL with value at [DI].
-    \item Move value at AL to [BX].
-    \item Increment SI, DI and BX, decrease CX, repeat till CX = 0.
+    \item Move value of count to CX register.
+    \item Move value 1 to AH register, under label L1.
+    \item Request interrupt 21H to enable keyboard input stored AL register. 
+    \item Compare AL with hex value 60 using CMP AL, 60H. 
+    \item Jump to label UPPER if AL is greater than 60.
+    \item Add hex value 20H to AL using ADD AL, 20H.
+    \item Jump to label DONE.
+    \item Subtract hex value 20H from AL using SUB AL, 20H under label UPPER.
+    \item Move value 2 to AH register, under label DONE.
+    \item Move contents to AL to DL register to display it.
+    \item Request interrupt 21H to enable output at standard output.
+    \item Loop back to label L1.
 \end{itemize}
 
 \newpage
