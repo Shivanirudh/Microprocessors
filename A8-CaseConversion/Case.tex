@@ -1,4 +1,4 @@
-\documentclass[10pt,a4paper]{article}
+\documentclass[12pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 %\usepackage{minted}
@@ -93,21 +93,7 @@ assume cs:code, ds:data                                          & Declare code 
 \hline
 data segment                                                     & Start of data segment                         \\
 \hline
-r1 db 02H                                                        & Define byte r1 with value 02H                 \\
-\hline 
-r2 db 02H                                                        & Define byte r2 with value 02H                 \\
-\hline
-c1 db 03H                                                        & Define byte c1 with value 03H                 \\
-\hline
-c2 db 03H                                                        & Define byte c2 with value 03H                 \\
-\hline
-count dw 0006H                                                   & Define word count with value 0006H            \\
-\hline
-mat1 db 22H, 33H, 44H, 55H, 66H, 77H                             & Define matrix of values mat1                  \\
-\hline
-mat2 db 33H, 44H, 55H, 66H, 77H, 88H                             & Define matrix of values mat2                  \\
-\hline 
-mat3 db ?                                                        & Define result matrix of values mat3           \\
+count equ 10H                                                    & Define variable count with value 10H          \\
 \hline
 data ends                                                        & End of data segment                           \\
 \hline
@@ -117,49 +103,31 @@ start:~mov ax, data                                              & Move data to 
 \hline
 mov ds, ax                                                       & Move contents of AX register to DS register   \\
 \hline
-mov dl, 0AH                                                      & Move hex value 0A to DL register              \\
-\hline
-mov si, offset mat1                                              & Move offset of mat1 to SI register            \\
-\hline
-mov di, offset mat2                                              & Move offset of mat2 to DI register            \\
-\hline
-mov bx, offset mat3                                              & Move offset of mat3 to BX register            \\
-\hline
 mov cx, count                                                    & Move value of count to CX register            \\
 \hline
-mov al, r1                                                       & Move value of r1 to AL register               \\
+l1:~mov ah, 1                                                    & Move value 1 o AH register                    \\
 \hline
-mov ah, r2                                                       & Move value of r2 to AH register               \\
+int 21h                                                          & Accept keyboard input                         \\
 \hline
-mov dl, c1                                                       & Move value of c1 to DL register               \\
+cmp al, 60H                                                      & Compare value in AL register with hex value 60\\
 \hline
-mov dh, c2                                                       & Move value of c2 to DH register               \\ 
+jnc upper                                                        & Jump to upper if AL > 60                      \\
 \hline
-cmp al, ah                                                       & Compare values of AL and AH registers         \\
+add al, 20H                                                      & AL = AL + 20                                  \\
 \hline
-jne exit                                                         & Jump to exit if ZF = 0                        \\
+jmp done                                                         & Jump to done                                  \\
 \hline
-cmp dl, dh                                                       & Compare values of DL, DH registers            \\
+upper:~sub al, 20H                                               & AL = AL - 20                                  \\
 \hline
-jne exit                                                         & Jump to exit if ZF = 0                        \\
+done:~mov ah, 2                                                  & Move value 2 to AH register                   \\
 \hline
-here:~mov al, [si]                                               & Move contents at SI to AL register            \\
-\hline            
-add al, [di]                                                     & AL = AL + [DI]                                \\
+mov dl, al                                                       & Move value in AL register to DL register      \\
 \hline
-mov [bx], al                                                     & Move contents of AL register to BX register   \\
+int 21h                                                          & Display value in standard output              \\
 \hline
-inc si                                                           & Increment value in SI register                \\
-\hline 
-inc di                                                           & Increment value in DI register                \\
+loop l1                                                          & Loop back from L1                             \\
 \hline
-inc bx                                                           & Increment value in BX register                \\         
-\hline
-dec cx                                                           & Decrement value of CX register                \\
-\hline
-jnz here                                                         & Jump to here if ZF = 0                        \\
-\hline
-exit:~mov ah, 4ch                                                & To request interrupt                          \\
+mov ah, 4ch                                                & To request interrupt                          \\
 \hline
 int 21h                                                          & Request interrupt routine                     \\ 
 \hline
@@ -175,139 +143,14 @@ end start                                                        &              
 \subsection*{\textbf{Unassembled code:}}
 \begin{figure}[h]
     \centering
-    \includegraphics[trim = 100mm 60mm 200mm 120mm, clip, width = \textwidth]{Pics/MAUS.png}
+    \includegraphics[trim = 100mm 60mm 200mm 110mm, clip, width = \textwidth]{Pics/CaseUS.png}
 \end{figure}
 \subsubsection*{\textbf{Input and Output:}}
 \begin{figure}[h]
     \centering
-    \includegraphics[trim = 100mm 60mm 100mm 80mm, clip, width = \textwidth]{Pics/MAIO.png}
-    \caption{ \textbf{Input:} \emph{mat1:} 22H, 33H, 44H, 55H, 66H, 77H; \emph{mat2:} 33H, 44H, 55H, 66H, 77H, 88H ; \newline \hspace{1cm}
-              \textbf{Output:} \emph{mat3:} 55H, 77H, 99H, BBH, DDH, FFH}
-\end{figure}
-%-------------------------------------------------------------------------------------------------------------------------------------------
-\hrule
-\newpage
-\subsection*{\textbf{\underline{Matrix Subtraction}}}
-
-\subsubsection*{\textbf{Algorithm:}}
-\begin{itemize}
-    \item Move the data segment to the AX register and then move it to the DS register.
-    \item Move offsets of mat1, mat2 and mat3 into SI, DI, BX registers respectively.
-    \item Move value of count to CX register
-    \item Move values of r1, r2, c1, c2 into AL, AH, DL, DH registers respectively. 
-    \item Compare AL, AH by CMP AL, AH and jump to exit if unequal.
-    \item Compare BL, BH by CMP BL, BH and jump to exit if unequal.
-    \item Move value at [DI] to AL register.
-    \item Subtract AL with value at [SI].
-    \item Move value at AL to [BX].
-    \item Increment SI, DI and BX, decrease CX, repeat till CX = 0.
-\end{itemize}
-
-\newpage
-\subsubsection*{\textbf{Program:}}
-
-\begin{table}[htb]
-\centering
-\resizebox{\columnwidth}{!}{
-\begin{tabular}{|l|l|} 
-\hline
-\textbf{Program}                                                 & \textbf{Comments}                             \\ 
-\hline
-\hline
-assume cs:code, ds:data                                          & Declare code and data segments                \\
-\hline
-data segment                                                     & Start of data segment                         \\
-\hline
-r1 db 02H                                                        & Define byte r1 with value 02H                 \\
-\hline 
-r2 db 02H                                                        & Define byte r2 with value 02H                 \\
-\hline
-c1 db 03H                                                        & Define byte c1 with value 03H                 \\
-\hline
-c2 db 03H                                                        & Define byte c2 with value 03H                 \\
-\hline
-count dw 0006H                                                   & Define word count with value 0006H            \\
-\hline
-mat1 db 22H, 33H, 44H, 55H, 66H, 77H                             & Define matrix of values mat1                  \\
-\hline
-mat2 db 33H, 44H, 55H, 66H, 77H, 88H                             & Define matrix of values mat2                  \\
-\hline 
-mat3 db ?                                                        & Define result matrix of values mat3           \\
-\hline
-data ends                                                        & End of data segment                           \\
-\hline
-code segment                                                     & Start of code segment                         \\
-\hline
-start:~mov ax, data                                              & Move data to AX register                      \\
-\hline
-mov ds, ax                                                       & Move contents of AX register to DS register   \\
-\hline
-mov dl, 0AH                                                      & Move hex value 0A to DL register              \\
-\hline
-mov si, offset mat1                                              & Move offset of mat1 to SI register            \\
-\hline
-mov di, offset mat2                                              & Move offset of mat2 to DI register            \\
-\hline
-mov bx, offset mat3                                              & Move offset of mat3 to BX register            \\
-\hline
-mov cx, count                                                    & Move value of count to CX register            \\
-\hline
-mov al, r1                                                       & Move value of r1 to AL register               \\
-\hline
-mov ah, r2                                                       & Move value of r2 to AH register               \\
-\hline
-mov dl, c1                                                       & Move value of c1 to DL register               \\
-\hline
-mov dh, c2                                                       & Move value of c2 to DH register               \\ 
-\hline
-cmp al, ah                                                       & Compare values of AL and AH registers         \\
-\hline
-jne exit                                                         & Jump to exit if ZF = 0                        \\
-\hline
-cmp dl, dh                                                       & Compare values of DL, DH registers            \\
-\hline
-jne exit                                                         & Jump to exit if ZF = 0                        \\
-\hline
-here:~mov al, [di]                                               & Move contents at DI to AL register            \\
-\hline            
-add al, [si]                                                     & AL = AL - [SI]                                \\
-\hline
-mov [bx], al                                                     & Move contents of AL register to BX register   \\
-\hline
-inc si                                                           & Increment value in SI register                \\
-\hline 
-inc di                                                           & Increment value in DI register                \\
-\hline
-inc bx                                                           & Increment value in BX register                \\         
-\hline
-dec cx                                                           & Decrement value of CX register                \\
-\hline
-jnz here                                                         & Jump to here if ZF = 0                        \\
-\hline
-exit:~mov ah, 4ch                                                & To request interrupt                          \\
-\hline
-int 21h                                                          & Request interrupt routine                     \\ 
-\hline
-code ends                                                        & End of code segment                           \\
-\hline
-end start                                                        &                                               \\
-\hline
-\end{tabular}
-}
-\end{table}
-
-\newpage
-\subsection*{\textbf{Unassembled code:}}
-\begin{figure}[h]
-    \centering
-    \includegraphics[trim = 100mm 60mm 200mm 120mm, clip, width = \textwidth]{Pics/MSUS.png}
-\end{figure}
-\subsubsection*{\textbf{Input and Output:}}
-\begin{figure}[h]
-    \centering
-    \includegraphics[trim = 100mm 60mm 100mm 80mm, clip, width = \textwidth]{Pics/MSIO.png}
-    \caption{ \textbf{Input:} \emph{mat1:} 22H, 33H, 44H, 55H, 66H, 77H; \emph{mat2:} 33H, 44H, 55H, 66H, 77H, 88H ; \newline \hspace{1cm}
-              \textbf{Output:} \emph{mat3:} 11H, 11H, 11H, 11H, 11H, 11H}
+    \includegraphics[trim = 100mm 60mm 100mm 145mm, clip, width = \textwidth]{Pics/CaseIO.png}
+    \caption{ \textbf{Input:} A, z, B, y, C, x, D, w  ; \newline \hspace{1cm}
+              \textbf{Output:} a, Z, b, Y, c, X, d, W}
 \end{figure}
 \hrule
 \subsection*{\textbf{Result:}}
