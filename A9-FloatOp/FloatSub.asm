@@ -9,7 +9,7 @@ data segment
 	num2 dd 20.4325
 	
 	org 20H
-	sum dd ?
+	diff dd ?
 data ends
 code segment
 	start: mov ax, data
@@ -21,7 +21,7 @@ code segment
 
 		   fsub st(0), st(1)
 
-		   fst sum
+		   fst diff
 
 		   mov ah, 4ch
 		   int 21h

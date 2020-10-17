@@ -95,7 +95,7 @@ org 10H                                                          & Store at offs
 num2 dd 20.4575                                                  & Define decimal word num2 with value 20.4575   \\
 \hline
 org 20H                                                          & Store at offset 20                            \\
-\hliine
+\hline
 sum dd ?                                                         & Define decimal word sum to store result       \\
 \hline
 data ends                                                        & End of data segment                           \\
@@ -106,13 +106,16 @@ start:~mov ax, data                                              & Move data to 
 \hline
 mov ds, ax                                                       & Move contents of AX register to DS register   \\
 \hline
-finit          
-fld num1
-fld num2
-
-fadd st(0), st(1)
-
-fst sum
+finit                                                            & Initialise 8087 microprocessor                \\
+\hline
+fld num1                                                         & Load num1 into stack of 8087                  \\
+\hline
+fld num2                                                         & Load num2 into stack of 8087                  \\
+\hline
+fadd st(0), st(1)                                                & ST(0) = ST(0) + ST(1)                         \\
+\hline
+fst sum                                                          & Store value fo ST(0) in sum                   \\
+\hline
 mov ah, 4ch                                                      & To request interrupt                          \\
 \hline
 int 21h                                                          & Request interrupt routine                     \\ 
@@ -129,34 +132,27 @@ end start                                                        &              
 \subsection*{\textbf{Unassembled code:}}
 \begin{figure}[h]
     \centering
-    \includegraphics[trim = 100mm 60mm 200mm 120mm, clip, width = \textwidth]{Pics/BAUS.png}
+    \includegraphics[trim = 100mm 60mm 200mm 110mm, clip, width = \textwidth]{Pics/FAUS.png}
 \end{figure}
 \subsubsection*{\textbf{Input and Output:}}
 \begin{figure}[h]
     \centering
-    \includegraphics[trim = 100mm 60mm 100mm 80mm, clip, width = \textwidth]{Pics/BAIO.png}
-    \caption{ \textbf{Input:} num1: 25, num2: 36; \newline \hspace{1cm}
-              \textbf{Output:} ans: 61, carry: 0}
+    \includegraphics[trim = 100mm 60mm 100mm 80mm, clip, width = \textwidth]{Pics/FAIO.png}
+    \caption{ \textbf{Input:} num1: 20.4325, num2: 20.4575; \newline \hspace{1cm}
+              \textbf{Output:} sum: 40.69}
 \end{figure}
 %-------------------------------------------------------------------------------------------------------------------------------------------
 \hrule
 \newpage
-\subsection*{\textbf{\underline{BCD Subtraction}}}
+\subsection*{\textbf{\underline{Floating point Addition}}}
 
 \subsubsection*{\textbf{Algorithm:}}
 \begin{itemize}
     \item Move the data segment to the AX register and then move it to the DS register.
-    \item Move value of num1 to AL, num2 to BL, sign to CL registers.
-    \item Subtract AL and BL using SUB AL, BL.
-    \item Perform Decimal Adjust After Subtraction using DAS instruction.
-    \item Jump to label HERE if no carry.
-    \item Move value in AL to BL register, 99H to AL register.
-    \item Subtract AL and BL using SUB AL, BL.
-    \item Add 1 to AL using ADD AL, 01H.
-    \item Perform Decimal Adjust after Addition using DAA instruction.
-    \item Increment value of CL.
-    \item Move value of CL to sign, under label HERE.
-    \item Move value of AL to ans.
+    \item Initialise 8087 microprocessor using command FINIT.
+    \item Load num1 and num2 onto the 8087 stack using FLD num1 and FLD num2 commands.
+    \item Add stack elements 0 and 1 using FADD ST(0), ST(1).
+    \item Store the result in diff using FST diff.
 \end{itemize}
 
 \newpage
@@ -174,13 +170,17 @@ assume cs:code, ds:data                                          & Declare code 
 \hline
 data segment                                                     & Start of data segment                         \\
 \hline
-num1 db 25H                                                      & Define byte num1 with value 25                \\
+org 00H                                                          & Store at offset 00                            \\
 \hline
-num2 db 36H                                                      & Define byte num2 with value 36                \\
+num1 dd 20.4325                                                  & Define decimal word num1 with value 20.4575   \\
 \hline
-ans db ?                                                         & Define byte ans for result                    \\
+org 10H                                                          & Store at offset 10                            \\
 \hline
-sign db 00H                                                      & Define byte sign with value 00                \\
+num2 dd 20.4575                                                  & Define decimal word num2 with value 20.4325   \\
+\hline
+org 20H                                                          & Store at offset 20                            \\
+\hline
+diff dd ?                                                        & Define decimal word diff to store result      \\
 \hline
 data ends                                                        & End of data segment                           \\
 \hline
@@ -190,33 +190,15 @@ start:~mov ax, data                                              & Move data to 
 \hline
 mov ds, ax                                                       & Move contents of AX register to DS register   \\
 \hline
-mov al, num1                                                     & Move value of num1 to AL register             \\
-\hline             
-mov bl, num2                                                     & Move value of num2 to BL register             \\
+finit                                                            & Initialise 8087 microprocessor                \\
 \hline
-mov cl, sign                                                     & Move value of sign to CL register             \\
-\hline 
-sub al, bl                                                       & AL = AL - BL                                  \\
+fld num1                                                         & Load num1 into stack of 8087                  \\
 \hline
-das                                                              & Decimal Adjust after Subtraction              \\
-\hline                                                           
-jnc here                                                         & Jump to label HERE if CF = 0                  \\
+fld num2                                                         & Load num2 into stack of 8087                  \\
 \hline
-mov bl, al                                                       & Move value of AL to BL register               \\
+fsub st(0), st(1)                                                & ST(0) = ST(0) + ST(1)                         \\
 \hline
-mov al, 99H                                                      & Move hex value 99H to AL register             \\
-\hline
-sub al, bl                                                       & AL = AL - BL                                  \\
-\hline
-add al, 01H                                                      & AL = AL + 1                                   \\
-\hline 
-daa                                                              & Decimal Adjust after Addition                 \\
-\hline
-inc cl                                                           & Increment value of CL                         \\
-\hline
-here:~mov ans, al                                                & Move value of AL to ans                       \\
-\hline
-mov sign, cl                                                     & Move value of CL to sign                      \\
+fst diff                                                         & Store value fo ST(0) in diff                  \\
 \hline
 mov ah, 4ch                                                      & To request interrupt                          \\
 \hline
@@ -234,17 +216,17 @@ end start                                                        &              
 \subsection*{\textbf{Unassembled code:}}
 \begin{figure}[h]
     \centering
-    \includegraphics[trim = 100mm 60mm 200mm 120mm, clip, width = \textwidth]{Pics/BSUS.png}
+    \includegraphics[trim = 100mm 60mm 200mm 110mm, clip, width = \textwidth]{Pics/FSUS.png}
 \end{figure}
 \subsubsection*{\textbf{Input and Output:}}
 \begin{figure}[h]
     \centering
-    \includegraphics[trim = 100mm 60mm 100mm 80mm, clip, width = \textwidth]{Pics/BSIO.png}
-    \caption{ \textbf{Input:} num1: 25, num2: 36; \newline \hspace{1cm}
-              \textbf{Output:} ans: 11, sign: 1}
+    \includegraphics[trim = 100mm 60mm 100mm 80mm, clip, width = \textwidth]{Pics/FSIO.png}
+    \caption{ \textbf{Input:} num1: 20.4575, num2: 20.4325; \newline \hspace{1cm}
+              \textbf{Output:} difference: 0.025}
 \end{figure}
 \hrule
 \subsection*{\textbf{Result:}}
-The 8086 programs were written to perform BCD addition and subtraction operations, and the results observed.
+The 8086 programs were written to perform Floating Point operations, and the results observed.
 \end{flushleft}
 \end{document}
