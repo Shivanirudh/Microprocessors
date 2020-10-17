@@ -144,14 +144,14 @@ end start                                                        &              
 %-------------------------------------------------------------------------------------------------------------------------------------------
 \hrule
 \newpage
-\subsection*{\textbf{\underline{Floating point Addition}}}
+\subsection*{\textbf{\underline{Floating point Subtraction}}}
 
 \subsubsection*{\textbf{Algorithm:}}
 \begin{itemize}
     \item Move the data segment to the AX register and then move it to the DS register.
     \item Initialise 8087 microprocessor using command FINIT.
     \item Load num1 and num2 onto the 8087 stack using FLD num1 and FLD num2 commands.
-    \item Add stack elements 0 and 1 using FADD ST(0), ST(1).
+    \item Add stack elements 0 and 1 using FSUB ST(0), ST(1).
     \item Store the result in diff using FST diff.
 \end{itemize}
 
@@ -196,7 +196,7 @@ fld num1                                                         & Load num1 int
 \hline
 fld num2                                                         & Load num2 into stack of 8087                  \\
 \hline
-fsub st(0), st(1)                                                & ST(0) = ST(0) + ST(1)                         \\
+fsub st(0), st(1)                                                & ST(0) = ST(0) - ST(1)                         \\
 \hline
 fst diff                                                         & Store value fo ST(0) in diff                  \\
 \hline
