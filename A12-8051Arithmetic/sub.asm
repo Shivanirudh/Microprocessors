@@ -1,4 +1,4 @@
-; Program to perform 8051 addition
+; Program to perform 8051 subtraction
 
        mov r0, #00
        mov a, r1
