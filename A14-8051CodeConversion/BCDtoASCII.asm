@@ -8,7 +8,7 @@
 
        mov a, r1
        anl a, #0F0H
-	   swap a
+	swap a
        add a, #30H
        mov r4, a
 here:  sjmp here
