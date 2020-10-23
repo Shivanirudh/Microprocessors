@@ -55,7 +55,6 @@ To perform arithmetic operations on two 8 bit numbers using \textbf{8051 microco
 
 \begin{table}[htb]
 \centering
-\resizebox{\columnwidth}{!}{
 \begin{tabular}{|l|l|} 
 \hline
 \textbf{Program}                                                 & \textbf{Comments}                             \\ 
@@ -78,15 +77,14 @@ mov 03, r0                                                       & Move carry in
 here:~sjmp here                                                  & Halt                                          \\
 \hline
 \end{tabular}
-}
 \end{table}
 
 \subsubsection*{\textbf{Input and Output:}}
 \begin{figure}[h]
     \centering
     \includegraphics[trim = 60mm 75mm 60mm 10mm, clip, width = \textwidth]{Pics/Add.png}
-    \caption{ \textbf{Input:} \emph{r1:} 77h, \emph{r2:} 99h; 
-              \textbf{Output:} \emph{Result:} 10h, \emph{Carry:} 01h}
+    \caption{ \textbf{Input:} r1: 77h, r2: 99h; 
+              \textbf{Output:} Result: 10h, Carry: 01h}
 \end{figure}
 %----------------------------------------------------------------------------------------------------------------------------------------
 \newpage
@@ -107,7 +105,6 @@ here:~sjmp here                                                  & Halt         
 
 \begin{table}[htb]
 \centering
-\resizebox{\columnwidth}{!}{
 \begin{tabular}{|l|l|} 
 \hline
 \textbf{Program}                                                 & \textbf{Comments}                             \\ 
@@ -134,15 +131,106 @@ mov 03, r0                                                       & Move carry in
 here:~sjmp here                                                  & Halt                                          \\
 \hline
 \end{tabular}
-}
 \end{table}
 
 \subsubsection*{\textbf{Input and Output:}}
 \begin{figure}[h]
     \centering
     \includegraphics[trim = 60mm 75mm 60mm 10mm, clip, width = \textwidth]{Pics/Sub.png}
-    \caption{ \textbf{Input:} \emph{r1:} 40h, \emph{r2:} 60h; 
-              \textbf{Output:} \emph{Result:} 20h, \emph{Sign:} 01h}
+    \caption{ \textbf{Input:} r1: 40h, r2: 60h; 
+              \textbf{Output:} Result: 20h, Sign: 01h}
+\end{figure}
+%----------------------------------------------------------------------------------------------------------------------------------------
+\newpage
+\subsection*{\textbf{\underline{8 Bit Multiplication}}}
+
+\subsubsection*{\textbf{Algorithm:}}
+\begin{itemize}
+    \item Move hex value 00 to register 0. 
+    \item Move the value of registers 1 and 2 to A and B respectively.
+    \item Multiply using MUL A, B
+    \item The higher and lower bits stored in A and B should be moved to R3 and R4 respectively.
+\end{itemize}
+
+\newpage
+\subsubsection*{\textbf{Program:}}
+
+\begin{table}[htb]
+\centering
+\begin{tabular}{|l|l|} 
+\hline
+\textbf{Program}                                                 & \textbf{Comments}                             \\ 
+\hline
+\hline
+mov r0, \#00                                                     & Move hex value 00 to Register 0               \\
+\hline
+mov a, r1                                                        & Move value in Register 1 to A                 \\
+\hline
+mov b, r2                                                        & Move value in Register 2 to B                 \\
+\hline          
+mul ab                                                           & A = A * B                                     \\
+\hline
+mov r3, b                                                        & Move higher bits in B to Register 3           \\
+\hline 
+mov r4, a                                                        & Move lower bits in A to Register 4            \\
+\hline
+here:~sjmp here                                                  & Halt                                          \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection*{\textbf{Input and Output:}}
+\begin{figure}[h]
+    \centering
+    \includegraphics[trim = 60mm 75mm 60mm 10mm, clip, width = \textwidth]{Pics/Mul.png}
+    \caption{ \textbf{Input:} r1: 10h, r2: 15h; 
+              \textbf{Output:} Lower: 50h, Higher: 01h}
+\end{figure}
+%----------------------------------------------------------------------------------------------------------------------------------------
+\newpage
+\subsection*{\textbf{\underline{8 Bit Division}}}
+
+\subsubsection*{\textbf{Algorithm:}}
+\begin{itemize}
+    \item Move hex value 00 to register 0. 
+    \item Move the value of registers 1 and 2 to A and B respectively.
+    \item Divide using DIV A, B
+    \item The quotient and remainder bits stored in A and B should be moved to R3 and R4 respectively.
+\end{itemize}
+
+\newpage
+\subsubsection*{\textbf{Program:}}
+
+\begin{table}[htb]
+\centering
+\begin{tabular}{|l|l|} 
+\hline
+\textbf{Program}                                                 & \textbf{Comments}                             \\ 
+\hline
+\hline
+mov r0, \#00                                                     & Move hex value 00 to Register 0               \\
+\hline
+mov a, r1                                                        & Move value in Register 1 to A                 \\
+\hline
+mov b, r2                                                        & Move value in Register 2 to B                 \\
+\hline          
+div ab                                                           & A = A / B; B = A \% B                         \\
+\hline
+mov r3, a                                                        & Move quotient in A to Register 3              \\
+\hline 
+mov r4, b                                                        & Move remiander in B to Register 4             \\
+\hline
+here:~sjmp here                                                  & Halt                                          \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection*{\textbf{Input and Output:}}
+\begin{figure}[h]
+    \centering
+    \includegraphics[trim = 60mm 75mm 60mm 10mm, clip, width = \textwidth]{Pics/Div.png}
+    \caption{ \textbf{Input:} r1: 0Fh, r2: 06h; 
+              \textbf{Output:} Quotient: 02h, Remiander: 03h}
 \end{figure}
 \hrule
 \subsection*{\textbf{Result:}}
