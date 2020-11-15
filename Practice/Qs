@@ -1,0 +1,14 @@
+8086
+1. ALP to perform case conversion
+2. Block of 10 data from XX00 to XX09. ALP to store in YY00 to YY09 in reverse
+3. 32 bit addition and subtraction
+4. Cube of a number from 0 to 9 and store them from XX00 onwards.
+5. Floating point addition and subtraction
+6. Set of 9 numbers in memory. ALP to find the max and min amongst them.
+7. String manipulation operations.
+8. Fibonacci series
+7. BCD addition and subtraction.
+8051
+1. sum of digits in 16-bit number
+2. BCD to hex.
+3. 16-bit addition and subtraction.
