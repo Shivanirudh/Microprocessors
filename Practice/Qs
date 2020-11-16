@@ -1,14 +1,32 @@
 8086
-1. ALP to perform case conversion
-2. Block of 10 data from XX00 to XX09. ALP to store in YY00 to YY09 in reverse
-3. 32 bit addition and subtraction
-4. Cube of a number from 0 to 9 and store them from XX00 onwards.
-5. Floating point addition and subtraction
-6. Set of 9 numbers in memory. ALP to find the max and min amongst them.
-7. String manipulation operations.
-8. Fibonacci series
-7. BCD addition and subtraction.
+
+1. A set of nine numbers are stored from the memory location XX00. Write an ALP using 8086 to sort them in descending order.
+2. Write an ALP using 8086 to perform case conversion.
+3. Write an ALP using 8086 to find the largest among a list.
+4. Write an ALP using 8086 to find the number of ODD and EVEN numbers in a list.
+5. Write an ALP using 8086 to find the sum of 'n' numbers.
+6. Write an ALP using 8086 to perform matrix addition.
+7. Write an ALP using 8086 to count the number of odd and even numbers in a list.
+8. Write an ALP using 8086 to count the odd and even numbers in a list.
+9. Write an ALP using 8086 to find a cube of a number from 0 to 9 and store the result from XX00 onwards.
+10. Write an ALP using 8086 to perform floating point addition and subtraction.
+11. A set of nine numbers are stored in memory. Write an ALP using 8086 to find the largest number in the set and display its position.
+12. A block of 10 data is stored in the memory from XX00 to XX 09. Write an ALP using 8086 to transfer the data to the memory location YY00 to YY09 in the reverse order.
+13. Write an ALP using 8086 to perform 32 bit addition and subtraction.
+14. Write an ALP using 8086 to perform BCD  addition and subtraction.
+15. Write an ALP using 8086 to perform string manipulation operations.
+16. Write an ALP using 8086 to find Fibonacci series of a given number.
+17. Write an ALP using 8086 to perform matrix Subtraction
+18. Count number of 0s and 1s in a 32 bit number
+
 8051
-1. sum of digits in 16-bit number
-2. BCD to hex.
-3. 16-bit addition and subtraction.
+1. Write an ALP using 8051 to convert a number from HEX to BCD.
+2. Write an ALP using 8051 to find the sum of all odd numbers in a list.
+3. Write an ALP using 8051 to convert a number from BCD to Hex.
+4. Write an ALP using 8051 to convert a number from BCD to ASCII.
+5. Write an ALP using 8051 to find smallest in a list.
+6. Write an ALP using 8051 to find the number of ones and zeros in a 16 bit number.
+7. Write an ALP using 8051 to perform 16 bit addition and subtraction.
+8. Write an ALP using 8051 to sort a list of numbers in ascending and descending order
+9. Write an ALP using 8051 to find the 2's complement of a 16 bit number
+10. Write an ALP using 8051 to find the sum of digits present in 16 bit number
